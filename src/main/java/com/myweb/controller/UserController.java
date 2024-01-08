@@ -35,6 +35,7 @@ public class UserController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String uri = request.getRequestURI();
+		
 		String path = uri.substring(request.getContextPath().length());
 		
 		System.out.println(path);
@@ -64,7 +65,7 @@ public class UserController extends HttpServlet {
 				response.sendRedirect("login.user"); //MVC2 방식에서 리다이렉트는 다시 컨트롤러를 태우는데 사용
 			}
 			
-		}else if(path.equals("/user/loginForm.user")){ //로그인처리
+	 	}else if(path.equals("/user/loginForm.user")){ //로그인처리
 			
 			UserVO vo = service.login(request, response);
 			if(vo!=null) { //로그인성공
@@ -120,6 +121,43 @@ public class UserController extends HttpServlet {
 			}else {
 				response.sendRedirect("mypage.user");
 			}
+		}else if(path.equals("/user/delete.user")) { // 탈퇴화면
+			
+			request.getRequestDispatcher("user_delete.jsp").forward(request, response);
+			
+		}else if(path.equals("/user/deleteForm.user")) { //회원탈퇴요청
+			/*
+			 * 1. service 영역의 delete메서드로 연결합니다.
+			 * 2. service에서는 먼저 Login 메서드를 이용해서 회원의 pw를 조회해서 가지고 나옵니다. 
+			 * 3. 회원이 있다는 것은 비밀번호가 일치한다는 의미
+			 * 4. delete 메서드를 호출시켜서 회원정보를 삭제하고, 세션도 삭제하고, 홈화면으로 리다이렉트
+			 * 5. 비밀번호가 일치하지 않아서 실패한 경우에는, delete.jsp화면으로 메시지를 보내주세요.
+			 */
+			
+			int result = service.delete(request, response);
+			
+			if(result == 1) {
+				HttpSession session = request.getSession();
+				session.invalidate();
+				
+				response.setContentType("text/html; charset=UTF-8");
+				
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('탈퇴되었습니다');");
+				out.println("location.href='/JSPMyWeb/index.jsp';");
+				out.println("</script>");	
+				
+			}else {
+				response.setContentType("text/html; charset=UTF-8");
+				
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('비밀번호가 일치하지 않습니다');");
+				out.println("location.href='delete.user';");
+				out.println("</script>");
+			}
+			
 		}
 		
 	}

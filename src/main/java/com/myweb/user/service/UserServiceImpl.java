@@ -3,6 +3,7 @@ package com.myweb.user.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.myweb.user.model.UserDAO;
 import com.myweb.user.model.UserVO;
@@ -85,6 +86,21 @@ public class UserServiceImpl implements UserService {
 				HttpSession session = request.getSession();
 				session.setAttribute("user_name", name);
 			}
+			
+		return result;
+	}
+
+
+	@Override
+	public int delete(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("user_id");
+		String pw = request.getParameter("pw");
+		
+		UserVO vo = dao.login(id, pw);
+		
+		int result = dao.delete(vo);
 			
 		return result;
 	}

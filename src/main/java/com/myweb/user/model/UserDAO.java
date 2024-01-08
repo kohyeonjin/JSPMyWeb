@@ -190,4 +190,30 @@ public class UserDAO {
 			
 			return result;
 		}
+		
+		public int delete(UserVO vo) {
+			
+			int result = 0;
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+		
+			String sql = "DELETE USERS WHERE ID=?";
+			
+			try {
+				
+				conn = DriverManager.getConnection(url,uid,upw);
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, vo.getId());
+				
+				result = pstmt.executeUpdate();
+					
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				JdbcUtil.close(conn, pstmt, null);
+			}
+			
+			return result;
+		}
 }

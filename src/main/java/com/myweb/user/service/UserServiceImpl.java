@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserService {
 	public int join(HttpServletRequest request, HttpServletResponse response) {
 		
 		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
 		String name = request.getParameter("name");
+		String pw = request.getParameter("pw");
 		String email =request.getParameter("email");
 		String address = request.getParameter("address");
 		String gender = request.getParameter("gender");
@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int update(HttpServletRequest request, HttpServletResponse response) {
 			
-		String id = request.getParameter("id");
+			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");

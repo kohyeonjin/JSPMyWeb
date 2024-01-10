@@ -37,7 +37,7 @@
 				
 				<input type="button" value="목록" onclick="location.href='list.board';">&nbsp;&nbsp;
 				<input type="button" value="수정" onclick="location.href='modify.board?bno=${content.getBno()}';">&nbsp;&nbsp;
-				<input type="button" value="삭제">&nbsp;&nbsp;
+				<input type="button" value="삭제" onclick="location.href='delete.board?bno=${content.getBno()}';">&nbsp;&nbsp;
 			</td>
 		</tr>
 		

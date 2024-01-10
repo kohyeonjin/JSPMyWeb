@@ -58,9 +58,12 @@ public class BoardController extends HttpServlet {
 				
 		}else if(path.equals("/board/content.board")){
 			
-			BoardVO vo = service.getContent(request, response);
+			service.hitUpdate(request, response);
 			
+			
+			BoardVO vo = service.getContent(request, response);
 			request.setAttribute("content", vo);
+			
 			request.getRequestDispatcher("board_content.jsp").forward(request, response);
 		}else if(path.equals("/board/modify.board")) {
 			
@@ -93,6 +96,10 @@ public class BoardController extends HttpServlet {
 				response.sendRedirect("modify.board?bno=" +request.getParameter("bno"));
 			}
 			
+		}else if(path.equals("/board/delete.board")) {
+			
+			service.delete(request,response);
+			response.sendRedirect("list.board");
 		}
 	}
 	

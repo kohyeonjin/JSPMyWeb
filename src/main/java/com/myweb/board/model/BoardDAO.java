@@ -188,4 +188,53 @@ public class BoardDAO {
 		
 		return result;
 	}
+	
+	//삭제기능(삭제는 나중에 컬럼을 하나 만들고 사용하지 않음 Y,N)
+	public void delete(String bno) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM BOARD1 WHERE BNO = ?";
+		
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bno);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(conn, pstmt, null);
+		}
+		
+	}
+	//조회수작업
+	
+	public void hitUpdate(String bno) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE BOARD1 SET HIT = HIT+1 WHERE BNO = ?";
+		
+		try {
+			
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, bno);
+			
+			pstmt.executeUpdate();
+				
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			                
+		}finally {
+			JdbcUtil.close(conn, pstmt, null);
+		}
+	}
 }

@@ -16,4 +16,8 @@ public interface BoardService {
 	public BoardVO getContent(HttpServletRequest request, HttpServletResponse response);
 	
 	public int update(HttpServletRequest request, HttpServletResponse response);
+	
+	public void delete(HttpServletRequest request, HttpServletResponse response);
+	
+	public void hitUpdate(HttpServletRequest request, HttpServletResponse response);
 }

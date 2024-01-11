@@ -36,8 +36,10 @@
 			<td colspan="4" align="center">
 				
 				<input type="button" value="목록" onclick="location.href='list.board';">&nbsp;&nbsp;
-				<input type="button" value="수정" onclick="location.href='modify.board?bno=${content.getBno()}';">&nbsp;&nbsp;
-				<input type="button" value="삭제" onclick="location.href='delete.board?bno=${content.getBno()}';">&nbsp;&nbsp;
+				<c:if test="${content.writer eq sessionScope.user_id }">
+				<input type="button" value="수정" onclick="location.href='modify.board?bno=${content.getBno()}&writer=${content.writer}';">&nbsp;&nbsp;
+				<input type="button" value="삭제" onclick="location.href='delete.board?bno=${content.getBno()}&writer=${content.writer}';">&nbsp;&nbsp;
+				</c:if>
 			</td>
 		</tr>
 		

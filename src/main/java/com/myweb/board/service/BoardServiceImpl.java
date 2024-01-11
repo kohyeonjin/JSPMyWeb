@@ -21,8 +21,7 @@ public class BoardServiceImpl implements BoardService {
 		String content = request.getParameter("content");
 		
 		dao.insert(writer, title, content);
-		
-		
+	
 	}
 
 	@Override

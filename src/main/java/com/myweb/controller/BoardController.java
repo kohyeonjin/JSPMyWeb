@@ -32,6 +32,7 @@ public class BoardController extends HttpServlet {
 	}
 	
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf-8");
 		
 		String uri = request.getRequestURI();
@@ -60,8 +61,8 @@ public class BoardController extends HttpServlet {
 			
 			service.hitUpdate(request, response);
 			
-			
 			BoardVO vo = service.getContent(request, response);
+			
 			request.setAttribute("content", vo);
 			
 			request.getRequestDispatcher("board_content.jsp").forward(request, response);

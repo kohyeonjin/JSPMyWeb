@@ -92,7 +92,7 @@ public class BoardDAO {
 				int hit = rs.getInt("HIT");
 				Timestamp regdate = rs.getTimestamp("REGDATE");
 				
-				BoardVO vo = new BoardVO(bno,title,content,writer,hit,regdate);
+				BoardVO vo = new BoardVO(bno,writer,title,content,hit,regdate);
 				list.add(vo);
 			}
 			

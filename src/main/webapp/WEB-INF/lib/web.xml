@@ -13,14 +13,14 @@
   
   <!--필터를 web.xml에 걸어서 필터체이닝 -->
   
-  <filter>
+<!-- 	<filter>
   <filter-name>chain1</filter-name>
   <filter-class>com.myweb.util.filter.ChainFilter01</filter-class>
-   </filter>
-  <filter-mapping>
+   	</filter>
+  	<filter-mapping>
   	<filter-name>chain1</filter-name>
   	<url-pattern>/*</url-pattern>
-  </filter-mapping>
+  	</filter-mapping>
   
   
   <filter>
@@ -30,7 +30,8 @@
   <filter-mapping>
   	<filter-name>chain2</filter-name>
   	<url-pattern>/*</url-pattern>
-  </filter-mapping>
+  </filter-mapping> -->
   
+
   
 </web-app>
